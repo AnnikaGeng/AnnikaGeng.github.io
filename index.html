@@ -13,6 +13,29 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<script>
+			function loadXMLDoc()
+			{
+				var httpxml;
+				if (window.XMLHttpRequest)
+				{
+					httpxml = new XMLHttpRequest();
+				}
+				else
+				{
+					httpxml = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				httpxml.onreadystatechange=function()
+				{
+					if(httpxml.readyState==4 && httpxml.status==200)
+					{
+						document.getElementById("myDiv").innerHTML=httpxml.responseText;
+					}
+				}
+				httpxml.open("GET","demo.txt",true);
+				httpxml.send();
+			}
+		</script>
 	</head>
 	<body>
 
@@ -21,6 +44,8 @@
 				<header>
 					<h1>Willkommen zu Yvonne!</h1>
 					<p>Wir bieten nur die schönste Schokolade in der Welt.</p>
+					<div id="myDiv">click to change</div>
+					<button type="button" onclick="loadXMLDoc()">Schkolade</button>
 				</header>
 				<footer>
 					<a href="#first" class="button scrolly">Wählen Sie Ihre lieblings</a>
